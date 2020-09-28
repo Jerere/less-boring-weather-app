@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import WeatherCard from './components/WeatherCard';
+import SearchBar from './components/SearchBar';
 
 const baseURL = process.env.ENDPOINT;
 
-const getWeatherFromApi = async () => {
+const getWeatherFromApi = async (location) => {
   try {
-    const response = await fetch(`${baseURL}/weather/Helsinki`);
+    const response = await fetch(`${baseURL}/weather/${location}`);
     return response.json();
   } catch (error) {
     console.error(error);
@@ -19,28 +21,37 @@ class Weather extends React.Component {
     super(props);
 
     this.state = {
-      icon: '',
-      desc: '',
+      weatherData: null
     };
   }
 
-  async componentDidMount() {
-    const data = await getWeatherFromApi();
+  handleSearch = async (location) => {
+    const data = await getWeatherFromApi(location);
+
     this.setState({
-      icon: data.list[0].weather[0].icon.slice(0, -1),
-      desc: data.list[0].weather[0].description,
-      temp: data.list[0].main.temp,
+      weatherData: data.list,
+      locationData: data.city,
     });
   }
 
-  render() {
-    const { icon, desc, temp } = this.state;
+  async componentDidMount() {
+    this.handleSearch('Helsinki');
+  }
 
+  render() {
+    const { weatherData, locationData } = this.state;
     return (
-      <div className="icon" style={{ textAlign: 'center', fontFamily: 'arial' }}>
-        { icon && <img alt={desc} src={`/img/${icon}.svg`} />}
-        { desc && <h1>{temp}°C  </h1>}
-        { temp && <h2>{desc}</h2>}
+      <div className="root">
+        <div className="search-container">
+          <SearchBar handleSearch={this.handleSearch} />
+        </div>
+        <div className="weather-container">
+          {
+            weatherData && weatherData.map(weather =>
+              <WeatherCard key={weather.dt} weatherData={weather} locationData={locationData} />
+            )
+          }
+        </div>
       </div>
     );
   }
