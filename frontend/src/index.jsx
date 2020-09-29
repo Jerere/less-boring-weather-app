@@ -21,8 +21,12 @@ class Weather extends React.Component {
     super(props);
 
     this.state = {
-      weatherData: null
+      weatherData: null,
     };
+  }
+
+  async componentDidMount() {
+    this.handleSearch('Helsinki');
   }
 
   handleSearch = async (location) => {
@@ -36,27 +40,33 @@ class Weather extends React.Component {
     });
   }
 
-  async componentDidMount() {
-    this.handleSearch('Helsinki');
-  }
-
   render() {
-    const { weatherData, locationData, statusCode, message } = this.state;
+    const {
+      weatherData,
+      locationData,
+      statusCode,
+      message,
+    } = this.state;
+
     return (
       <div className="root">
         <div className="search-container">
           <SearchBar handleSearch={this.handleSearch} />
         </div>
         <div className="error-container">
-        {
-          statusCode === "404" && <h1>{message}</h1>
-        }
+          {
+            statusCode === '404' && <h1>{message}</h1>
+          }
         </div>
         <div className="weather-container">
           {
-            weatherData && weatherData.map(weather =>
-              <WeatherCard key={weather.dt} weatherData={weather} locationData={locationData} />
-            )
+            weatherData && weatherData.map((weather) => (
+              <WeatherCard
+                key={weather.dt}
+                weatherData={weather}
+                locationData={locationData}
+              />
+            ))
           }
         </div>
       </div>

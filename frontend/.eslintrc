@@ -10,7 +10,6 @@
     "comma-dangle": ["error", "always-multiline"],
     "linebreak-style": ["error", "windows"],
     "react/jsx-one-expression-per-line": "off"
-
   },
   "globals": {
     "fetch": false,
