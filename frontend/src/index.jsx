@@ -31,6 +31,8 @@ class Weather extends React.Component {
     this.setState({
       weatherData: data.list,
       locationData: data.city,
+      statusCode: data.cod,
+      message: data.message,
     });
   }
 
@@ -39,11 +41,16 @@ class Weather extends React.Component {
   }
 
   render() {
-    const { weatherData, locationData } = this.state;
+    const { weatherData, locationData, statusCode, message } = this.state;
     return (
       <div className="root">
         <div className="search-container">
           <SearchBar handleSearch={this.handleSearch} />
+        </div>
+        <div className="error-container">
+        {
+          statusCode === "404" && <h1>{message}</h1>
+        }
         </div>
         <div className="weather-container">
           {
