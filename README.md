@@ -6,7 +6,35 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 
 ## Prerequisites
 
-* An [openweathermap](http://openweathermap.org/) API key.
+* An <a href='https://openweathermap.org/forecast5'>Openweathermap</a> 5 day weather forecast API key.
+* I recommend to run this application with <a href='https://www.docker.com/get-started'>Docker </a>
+
+## How to run
+
+* Clone this repository
+
+```
+git clone https://github.com/Jerere/less-boring-weather-app
+cd less-boring-weather-app
+```
+
+* Create .env file in backend folder and place your openweathermap API key there
+
+```
+cd backend
+echo "WEATHER_API_KEY=your_api_key_here" > .env
+```
+
+* Run the app with docker compose
+
+```
+cd ..
+docker-compose up
+```
+
+* Frontend should now be visible at localhost:8000
+* Backend at localhost:9000
+
 
 ## Returning your solution
 
