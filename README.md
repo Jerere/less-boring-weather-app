@@ -28,7 +28,7 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 
 Here are some things in different categories that you can do to make the app better. Before starting you need to get yourself an API key to make queries in the [openweathermap](http://openweathermap.org/). You can run the app locally using `npm i && npm start`.
 
-### Docker
+### ✔ Docker
 
 *Docker containers are central to any modern development initiative. By knowing how to set up your application into containers and make them interact with each other, you have learned a highly useful skill.*
 
@@ -38,7 +38,7 @@ Here are some things in different categories that you can do to make the app bet
 
 * The developers are still keen to run the app and its pipeline on their own computers. Share the development files for the container by using volumes, and make sure the containers are started with a command enabling hot reload.
 
-### Node and React development
+### ✔ Node and React development
 
 *Node and React applications are highly popular technologies. Understanding them will give you an advantage in front- and back-end development projects.*
 
@@ -56,7 +56,7 @@ Here are some things in different categories that you can do to make the app bet
 
 * Create [Robot Framework](http://robotframework.org/) integration tests. Hint: Start by creating a third container that gives expected weather data and direct the backend queries there by redefining the **MAP_ENDPOINT**.
 
-### Cloud
+### ✔ Cloud
 
 *The biggest trend of recent times is developing, deploying and hosting your applications in cloud. Knowing cloud -related technologies is essential for modern IT specialists.*
 
